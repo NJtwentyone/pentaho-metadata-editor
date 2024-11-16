@@ -334,6 +334,38 @@
             </exclusion>
           </exclusions>
         </dependency>
+                
+        <!-- POC adding deps due to following 'generate-hadoop-addon' , when compiling will get circular dependency  -->
+        <!--
+njordan@TLGKC6M4GH pme-ce % mvn clean install -DskipTests -Dosgi
+[INFO] Scanning for projects...
+Downloading from pentaho.resolve.repo: https://one.hitachivantara.com/artifactory/pnt-mvn/org/pentaho/pentaho-ce-jar-parent-pom/10.3.0.0-SNAPSHOT/maven-metadata.xml
+Downloaded from pentaho.resolve.repo: https://one.hitachivantara.com/artifactory/pnt-mvn/org/pentaho/pentaho-ce-jar-parent-pom/10.3.0.0-SNAPSHOT/maven-metadata.xml (842 B at 1.1 kB/s)
+Downloading from pentaho.resolve.repo: https://one.hitachivantara.com/artifactory/pnt-mvn/org/pentaho/pentaho-ce-parent-pom/10.3.0.0-SNAPSHOT/maven-metadata.xml
+Downloaded from pentaho.resolve.repo: https://one.hitachivantara.com/artifactory/pnt-mvn/org/pentaho/pentaho-ce-parent-pom/10.3.0.0-SNAPSHOT/maven-metadata.xml (838 B at 10.0 kB/s)
+Downloading from pentaho.resolve.repo: https://one.hitachivantara.com/artifactory/pnt-mvn/org/pentaho/pentaho-parent-pom/10.3.0.0-SNAPSHOT/maven-metadata.xml
+Downloaded from pentaho.resolve.repo: https://one.hitachivantara.com/artifactory/pnt-mvn/org/pentaho/pentaho-parent-pom/10.3.0.0-SNAPSHOT/maven-metadata.xml (616 B at 11 kB/s)
+[ERROR] [ERROR] Some problems were encountered while processing the POMs:
+[FATAL] 'dependencies.dependency.[pentaho:pme-ce:10.3.0.0-SNAPSHOT]' for pentaho:pme-ce:10.3.0.0-SNAPSHOT is referencing itself. @ line 339, column 21
+ @ 
+[ERROR] The build could not read 1 project -> [Help 1]
+[ERROR]   
+[ERROR]   The project pentaho:pme-ce:10.3.0.0-SNAPSHOT (/Users/njordan/code_sandbox/pentaho/repo/pentaho-metadata-editor/assemblies/pme-ce/pom.xml) has 1 error
+[ERROR]     'dependencies.dependency.[pentaho:pme-ce:10.3.0.0-SNAPSHOT]' for pentaho:pme-ce:10.3.0.0-SNAPSHOT is referencing itself. @ line 339, column 21
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/ProjectBuildingException
+        -->
+        <dependency>
+          <groupId>pentaho</groupId>
+          <artifactId>pme-ce</artifactId>
+          <type>zip</type>
+          <version>${project.version}</version>
+        </dependency> 
+
 
         <!-- OSGi Dependencies -->
         <!-- Because of: -->
